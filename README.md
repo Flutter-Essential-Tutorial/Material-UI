@@ -2,32 +2,34 @@
 
 A new Flutter project.
 
+[Ref link](https://material.io/components?platform=flutter)
+
 ## TODO
-- App bars: bottom
-- App bars: top
-- Banners
-- Bottom navigation
-- Buttons
-- Buttons: floating action button
-- Cards
-- Checkboxes
-- Chips
-- Datatables
-- Date pickers
-- Dialogs
-- Dividers
-- Lists
-- Menus
-- Navigation drawer
-- Navigation rail
-- Progress indicators
-- Radio buttons
-- Sheets: bottons
-- Sliders
-- Snackbars
-- Switches
-- Tabs
-- Text fields
-- Time pickers
-- Tooltips
-- more
+- [x] App bars: bottom
+- [ ] App bars: top
+- [ ] Banners
+- [ ] Bottom navigation
+- [ ] Buttons
+- [ ] Buttons: floating action button
+- [ ] Cards
+- [ ] Checkboxes
+- [ ] Chips
+- [ ] Datatables
+- [ ] Date pickers
+- [ ] Dialogs
+- [ ] Dividers
+- [ ] Lists
+- [ ] Menus
+- [ ] Navigation drawer
+- [ ] Navigation rail
+- [ ] Progress indicators
+- [ ] Radio buttons
+- [ ] Sheets: bottons
+- [ ] Sliders
+- [ ] Snackbars
+- [ ] Switches
+- [ ] Tabs
+- [ ] Text fields
+- [ ] Time pickers
+- [ ] Tooltips
+- [ ] more
