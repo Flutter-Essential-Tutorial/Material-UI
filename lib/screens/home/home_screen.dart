@@ -7,10 +7,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreen> createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   late TabController tabController;
@@ -45,10 +45,17 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text("Material UI")),
+      bottomNavigationBar: BtnAppBar(scaffoldKey: scaffoldKey),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        elevation: 10.0,
+        child: const Icon(Icons.arrow_upward),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // appBar: AppBar(title: const Text("Material UI")),
       drawer: myDrawer(context, navItemList, tabController, false),
       body: TabBarView(
-        //physics: const NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         controller: tabController,
         children: navItemList.map((e) => e.page!).toList(),
       ),
@@ -91,6 +98,31 @@ class _HomeScreenState extends State<HomeScreen>
           scaffoldKey.currentState!.closeDrawer(); //open drawer
         }
       },
+    );
+  }
+}
+
+class BtnAppBar extends StatelessWidget {
+  const BtnAppBar({
+    Key? key,
+    required this.scaffoldKey,
+  }) : super(key: key);
+
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      child: Row(children: <Widget>[
+        IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              scaffoldKey.currentState?.openDrawer();
+            }),
+        const Spacer(),
+        IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+        IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
+      ]),
     );
   }
 }
