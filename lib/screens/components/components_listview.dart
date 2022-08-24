@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_ui/screens/components/items/appbar_buttom.dart';
+import 'package:flutter_material_ui/items/app_bar_button_View.dart';
+import 'package:flutter_material_ui/items/page/page.dart';
 
 class ComponentsListView extends StatelessWidget {
   const ComponentsListView({
@@ -8,67 +9,97 @@ class ComponentsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(alignment: AlignmentDirectional.bottomStart, children: [
-      InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, AppbarButtomScreen.routeName);
-        },
-        splashColor: Colors.purple[100],
-        child: Container(
-          // key: _key1,
-          height: 170,
-          // width: 200,
-          margin: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: Container(
-                  // width: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.amber[100],
-                    image: const DecorationImage(
-                        image: AssetImage("assets/appbarbottom.png"),
-                        fit: BoxFit.cover),
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Container(
+          //   margin: const EdgeInsets.only(bottom: 2.5),
+          //   decoration: const BoxDecoration(
+          //       color: Colors.blue,
+          //       borderRadius: BorderRadius.only(
+          //           bottomLeft: Radius.circular(5),
+          //           bottomRight: Radius.circular(5))),
+          //   child: const Text(
+          //     " ",
+          //     textAlign: TextAlign.center,
+          //   ),
+          // ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (c, i) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, PagesView.routeName);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(10),
+                    // padding: const EdgeInsets.all(),
+                    height: height / 5,
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            child: AppBarBtnView.getImage,
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            height: (height / 5) / 2,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: <Color>[
+                                    Colors.black.withOpacity(0.8),
+                                    Colors.transparent
+                                  ]),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 5,
+                          left: 10,
+                          right: 0,
+                          child: Row(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 10),
+                                child: Text(
+                                  AppBarBtnView.title,
+                                  style: const TextStyle(
+                                      fontSize: 25,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              )
-            ],
-          ),
-        ),
-      ),
-      Positioned(
-        // bottom: 0,
-        child: Container(
-          margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadiusDirectional.circular(20),
-            color: const Color.fromARGB(195, 216, 216, 216),
-          ),
-          height: 70,
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "Hello",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                Text(
-                  "This gonna be a subitile and short Text",
-                  style: TextStyle(fontSize: 15),
-                )
-              ],
+                );
+              },
             ),
-          ),
-        ),
-      )
-    ]);
+          )
+        ],
+      ),
+    );
   }
 }
